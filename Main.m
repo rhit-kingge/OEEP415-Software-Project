@@ -4,4 +4,6 @@ clc; clear all;
 raw = imread('reference image.jpg');
 interface = UserInterfaceC(raw)
 disp('working');
-disp(interface.ROI);
+roi = interface.ROI;
+disp('Current ROI:')
+disp(roi);

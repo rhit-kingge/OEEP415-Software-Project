@@ -35,7 +35,6 @@ classdef UserInterfaceC
                disp('Horizontal Button Pressed')
                EdgeOrientation = 'Horizontal';
                imshow('reference image.jpg')
-               disp(ROI)
                disp(EdgeOrientation)
                close(fig);
                close all;
@@ -46,8 +45,10 @@ classdef UserInterfaceC
                disp('Vertical Button Pressed')
                EdgeOrientation = 'Vertical'
                imshow('reference image.jpg')
-               ROI = drawrectangle().Position;
-               disp(ROI)
+               ROI = drawrectangle();
+
+               disp('The ROI Position should be:')
+               disp(ROI.Position);
                disp(EdgeOrientation)
                close(fig);
                close all;

@@ -2,7 +2,7 @@ clc
 clear all
 
 %read image and convert to grey
-raw=imread("reference image.jpg");
+raw=imread('MTFReference.jpg');
 img=rgb2gray(raw);
 
 %Creates Gui

@@ -31,10 +31,7 @@ classdef UserInterfaceC
                disp('Horizontal Button Pressed')
                EdgeOrientation = 'Horizontal';
                imshow('reference image.jpg')
-               p = impixel();
-               ROI = p;
-               all_fig = findall(0, 'type', 'figure');
-               close(all_fig)
+               ROI = drawrectangle();
                disp(ROI)
                disp(EdgeOrientation)
             end
@@ -43,10 +40,7 @@ classdef UserInterfaceC
                disp('Vertical Button Pressed')
                EdgeOrientation = 'Vertical'
                imshow('reference image.jpg')
-               p = impixel();
-               ROI = p;
-               all_fig = findall(0, 'type', 'figure');
-               close(all_fig)
+               ROI = drawrectangle();
                disp(ROI)
                disp(EdgeOrientation)
            end

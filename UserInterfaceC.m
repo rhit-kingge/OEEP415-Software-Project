@@ -5,6 +5,7 @@ classdef UserInterfaceC
         EdgeOrientation
         image
         ROI
+        moveOn = 0;
     end
     
     methods
@@ -26,23 +27,30 @@ classdef UserInterfaceC
             btn2 = uibutton(fig, 'push', 'Position', btn2Position, 'ButtonPushedFcn', @(btn2, event) verticalEdge);
             btn2.Text = 'Verical Edge';
 
+            uiwait(fig);
+
 
             function horizontalEdge
+               
                disp('Horizontal Button Pressed')
                EdgeOrientation = 'Horizontal';
                imshow('reference image.jpg')
-               ROI = drawrectangle();
                disp(ROI)
                disp(EdgeOrientation)
+               close(fig);
+               close all;
             end
 
             function verticalEdge
+               
                disp('Vertical Button Pressed')
                EdgeOrientation = 'Vertical'
                imshow('reference image.jpg')
-               ROI = drawrectangle();
+               ROI = drawrectangle().Position;
                disp(ROI)
                disp(EdgeOrientation)
+               close(fig);
+               close all;
            end
 
 %             btn3X = 175; btn3Y = 20;
@@ -63,11 +71,6 @@ classdef UserInterfaceC
 
         end
         
-        function outputArg = method1(obj,inputArg)
-            %METHOD1 Summary of this method goes here
-            %   Detailed explanation goes here
-            outputArg = obj.Property1 + inputArg;
-        end
     end
 end
 

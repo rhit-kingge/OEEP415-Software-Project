@@ -14,4 +14,4 @@ btn = uibutton(pnl,'state','Text','Select an Edge');
 %Creates image spot and then loads image onto Gui
 ima = uiimage(pnl);
 ima.ImageSource = 'reference image.jpg';
-
+%try img instead of reference image on line 16 to avoid hard coding

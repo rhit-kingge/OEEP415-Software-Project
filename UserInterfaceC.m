@@ -9,10 +9,7 @@ classdef UserInterfaceC
     
     methods
         function obj = UserInterfaceC(image)
-
-%             imshow('reference image.jpg')
-%             p = impixel();
-%             ROI = p;
+             
 
             
             fig = uifigure('Name','Select Edge Orientation');
@@ -31,11 +28,27 @@ classdef UserInterfaceC
 
 
             function horizontalEdge
-               disp('Horizontal Button Pressed')         
+               disp('Horizontal Button Pressed')
+               EdgeOrientation = 'Horizontal';
+               imshow('reference image.jpg')
+               p = impixel();
+               ROI = p;
+               all_fig = findall(0, 'type', 'figure');
+               close(all_fig)
+               disp(ROI)
+               disp(EdgeOrientation)
             end
 
             function verticalEdge
-               disp('Vertical Button Pressed')         
+               disp('Vertical Button Pressed')
+               EdgeOrientation = 'Vertical'
+               imshow('reference image.jpg')
+               p = impixel();
+               ROI = p;
+               all_fig = findall(0, 'type', 'figure');
+               close(all_fig)
+               disp(ROI)
+               disp(EdgeOrientation)
            end
 
 %             btn3X = 175; btn3Y = 20;

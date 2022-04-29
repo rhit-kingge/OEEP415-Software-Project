@@ -1,5 +1,5 @@
 clc; clear all;
 
 
-raw = imread('MTFReference.jpg');
+raw = imread('reference image.jpg');
 interface = UserInterfaceC(raw)

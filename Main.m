@@ -8,7 +8,7 @@ disp('Current ROI Position:');
 disp(roi);
 
 
-croppedImage = raw(roi(2) + (0:roi(4)), roi(1) + (0:roi(3)));
+croppedImage = im2gray(raw(roi(2) + (0:roi(4)), roi(1) + (0:roi(3))));
 imshow(croppedImage);
 
 

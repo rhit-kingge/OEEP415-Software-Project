@@ -8,7 +8,7 @@ classdef UserInterfaceC
     end
     
     methods
-        function obj = UserInterfaceC(image)
+        function obj = UserInterfaceC(inim)
             
             fig = uifigure('Name','Select Edge Orientation');
             fig.Position = [1 1 500 100];
@@ -30,7 +30,7 @@ classdef UserInterfaceC
             function horizontalEdge
                disp('Horizontal Button Pressed');
                obj.EdgeOrientation = 'Horizontal';
-               imshow(image);
+               imshow(inim);
                obj.ROI = round(drawrectangle().Position);
                close(fig);
                close(figure(1));
@@ -39,10 +39,10 @@ classdef UserInterfaceC
             function verticalEdge
                disp('Vertical Button Pressed')
                obj.EdgeOrientation = 'Vertical';
-               imshow(image)
+               imshow(inim)
                obj.ROI = round(drawrectangle().Position);
-               close(figure(1));
                close(fig);
+               close(figure(1));
            end
 
         end

@@ -28,29 +28,20 @@ classdef UserInterfaceC
 
 
             function horizontalEdge
-               
                disp('Horizontal Button Pressed');
                obj.EdgeOrientation = 'Horizontal';
-
-               imshow('reference image.jpg');
-               obj.ROI = drawrectangle();
-
-               disp('The ROI Position should be:');
-               disp(obj.ROI.Position);
-               disp(obj.EdgeOrientation);
+               imshow(image);
+               obj.ROI = round(drawrectangle().Position);
                close(fig);
+               close(figure(1));
             end
 
             function verticalEdge
-               
                disp('Vertical Button Pressed')
-               obj.EdgeOrientation = 'Vertical'
-               imshow('reference image.jpg')
-               obj.ROI = drawrectangle();
-
-               disp('The ROI Position should be:')
-               disp(obj.ROI.Position);
-               disp(obj.EdgeOrientation)
+               obj.EdgeOrientation = 'Vertical';
+               imshow(image)
+               obj.ROI = round(drawrectangle().Position);
+               close(figure(1));
                close(fig);
            end
 

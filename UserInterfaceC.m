@@ -5,13 +5,10 @@ classdef UserInterfaceC
         EdgeOrientation
         image
         ROI
-        moveOn = 0;
     end
     
     methods
         function obj = UserInterfaceC(image)
-             
-
             
             fig = uifigure('Name','Select Edge Orientation');
             fig.Position = [1 1 500 100];
@@ -32,43 +29,30 @@ classdef UserInterfaceC
 
             function horizontalEdge
                
-               disp('Horizontal Button Pressed')
-               EdgeOrientation = 'Horizontal';
-               imshow('reference image.jpg')
-               disp(EdgeOrientation)
+               disp('Horizontal Button Pressed');
+               obj.EdgeOrientation = 'Horizontal';
+
+               imshow('reference image.jpg');
+               obj.ROI = drawrectangle();
+
+               disp('The ROI Position should be:');
+               disp(obj.ROI.Position);
+               disp(obj.EdgeOrientation);
                close(fig);
-               close all;
             end
 
             function verticalEdge
                
                disp('Vertical Button Pressed')
-               EdgeOrientation = 'Vertical'
+               obj.EdgeOrientation = 'Vertical'
                imshow('reference image.jpg')
-               ROI = drawrectangle();
+               obj.ROI = drawrectangle();
 
                disp('The ROI Position should be:')
-               disp(ROI.Position);
-               disp(EdgeOrientation)
+               disp(obj.ROI.Position);
+               disp(obj.EdgeOrientation)
                close(fig);
-               close all;
            end
-
-%             btn3X = 175; btn3Y = 20;
-%             btn3Position = [btn3X btn3Y btnWidth btnHeight];
-%             btn3 = uibutton(fig, 'push', 'Position', btn3Position, 'ButtonPushedFcn', @(btn3, event) submitData);
-%             btn3.Text = 'Submit';
-
-%             im = uiimage(fig, 'Position', [1 100 1200 600]);
-%             im.ImageSource = image;
-
-%             function submitData
-%                 disp('Submit Button Pressed')
-%                 a = false;
-%                 
-%             end
-
-
 
         end
         

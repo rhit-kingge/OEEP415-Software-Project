@@ -5,9 +5,7 @@ im = imbinarize(img);
 %imshow(im)
 
 counter = 0;
-disp(size(im, 1));
 for row = 1:size(im, 1)
-    disp(im(row,1) - im(row, size(im, 2)));
     if im(row,1) - im(row, size(im, 2)) > 0
         counter = counter + 1;
     end

@@ -2,7 +2,7 @@ function [exists] = checkIfEdge(img)
 %CHECKIFEDGE Summary of this function goes here
 %   Detailed explanation goes here
 im = imbinarize(img);
-imshow(im)
+%imshow(im)
 
 counter = 0;
 disp(size(im, 1));

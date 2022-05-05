@@ -59,7 +59,7 @@ else
         values = double(croppedImage(:,column));
         hammingVector = values;
         for i = 1:totalRows
-            hammingVector(i) = 0.54 +0.46 * cos(2*pi*(i-double(totalRows)/2)/totalRows);
+            hammingVector(i) = 0.54 +0.46 * cos(2*pi*(i-double(totalRows)*2)/(totalRows/4));
         end
         values = hammingVector.*values;
         numerator = double(0);

@@ -22,7 +22,7 @@ if strcmp(orientation, 'Vertical')
 else
     for column = 1:size(im,2)
         if abs(im(1, column) - im(size(im,1), column)) > 0
-            counter = counter + 1
+            counter = counter + 1;
         end
     end
     if counter > 0.8*size(im,2)

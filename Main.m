@@ -35,8 +35,6 @@ end
 
 
 [centroids, isValid] = findCentroid(croppedImage, interface.EdgeOrientation);
-disp("isValid and Centroids")
-disp(centroids);disp("isValid");disp(isValid);
 if isValid == true
 
 else
@@ -58,16 +56,31 @@ else
     set(errorWindow.pb,'callback',{@pb_call,errorWindow})  % Set the callback for pushbutton.
 end
 
+imagesc(croppedImage);
+colormap('gray');
+hold on;
+
+if strcmp(interface.EdgeOrientation, 'Vertical')
+    xArray = 1:size(croppedImage, 1);
+    plot(centroids, xArray, 'LineWidth', 1.5, 'Color', 'r');
+else
+    yArray = 1:size(croppedImage, 2);
+    plot(yArray, centroids, 'LineWidth', 1.5, 'Color', 'r');
+end
+
+
+% sz = size(centroids);
+% 
+% gradient = polyfit((1:sz),centroids(1:sz,1),1);
 
 
 
-image(croppedImage, 'XData', [1 size(centroids, 2)], 'YData', [min(centroids) max(centroids)]);
-xArray = 1:size(croppedImage, 1);
-plot(centroids, xArray);
 
-sz = size(centroids);
 
-gradient = polyfit((1:sz),centroids(1:sz,1),1);
+
+
+
+
 
 %% Functions (must be put at the end)
 function [] = pb_call(varargin)

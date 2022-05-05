@@ -61,9 +61,10 @@ end
 
 
 
-image(croppedImage, 'XData', [1 size(centroids, 2)], 'YData', [min(centroids) max(centroids)])
+image(croppedImage, 'XData', [1 size(centroids, 2)], 'YData', [min(centroids) max(centroids)]);
 hold on
-plot(centroids)
+xArray = 1:size(croppedImage, 1);
+plot(centroids);
 
 
 

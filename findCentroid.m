@@ -4,11 +4,10 @@ function [centroids, isValid] = findCentroid(croppedImage, orientation)
 
 R = size(croppedImage, 1);
 P = size(croppedImage, 2);
-centroids = zeros(R, 1);
 isValid = true;
 
 if strcmp(orientation, 'Vertical')
-    
+    centroids = zeros(R, 1);
     for r = 1:R
         values = double(croppedImage(r,:));
         hammingVector = values;
@@ -29,6 +28,7 @@ if strcmp(orientation, 'Vertical')
         centroids(r) = c;
     end
 else
+    centroids = zeros(P, 1);
     for p = 1:P
         values = double(croppedImage(:,p));
         hammingVector = values;
@@ -47,6 +47,5 @@ else
             %isValid = false;
         end
         centroids(p) = c;
-    end
-    
+    end  
 end

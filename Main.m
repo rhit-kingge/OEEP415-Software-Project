@@ -10,7 +10,7 @@ croppedImage = im2gray(raw(roi(2) + (0:roi(4)), roi(1) + (0:roi(3))));
 imshow(croppedImage);
 
 %% Check if selected ROI contains an edge
-if checkIfEdge(croppedImage)
+if checkIfEdge(croppedImage, interface.EdgeOrientation)
     disp('The selected region of interest does contain an edge')
 else
     errorWindow.fh = figure('units','pixels',...
@@ -35,6 +35,8 @@ end
 
 
 [centroids, isValid] = findCentroid(croppedImage, interface.EdgeOrientation);
+disp("isValid and Centroids")
+disp(centroids);disp("isValid");disp(isValid);
 if isValid == true
 
 else

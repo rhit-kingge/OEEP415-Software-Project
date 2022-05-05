@@ -66,7 +66,9 @@ hold on
 xArray = 1:size(croppedImage, 1);
 plot(centroids);
 
+sz = size(centroids);
 
+gradient = polyfit((1:sz),centroids(1:sz,1),1);
 
 %% Functions (must be put at the end)
 function [] = pb_call(varargin)

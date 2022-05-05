@@ -65,12 +65,15 @@ else
         'position',[20 20 260 30],...
         'string','Close');
     set(errorWindow.pb,'callback',{@pb_call,errorWindow})  % Set the callback for pushbutton.
+    uiwait(errorWindow.fh);
+    return
 end
 
+uiwait(figure(1));
+disp("waiting is working")
 
-% sz = size(centroids);
-% 
-% gradient = polyfit((1:sz),centroids(1:sz,1),1);
+sz = size(centroids);
+gradient = polyfit((1:sz),centroids(1:sz,1),1);
 
 
 

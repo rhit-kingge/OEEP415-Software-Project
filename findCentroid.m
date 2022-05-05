@@ -12,7 +12,7 @@ if strcmp(orientation, 'Vertical')
         values = double(croppedImage(r,:));
         hammingVector = values;
         for i = 1:P
-            hammingVector(i) = 0.54 +0.46 * cos(2*pi*(i-double(P)/2)/P);
+            hammingVector(i) = 0.54 +0.46 * cos(2*pi*(i-double(P)/2)/(P));
         end
         values = hammingVector.*values;
         numerator = double(0);

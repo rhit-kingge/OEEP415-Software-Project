@@ -1,9 +1,11 @@
 function [centroids, isValid] = findCentroid(croppedImage, orientation)
-isValid = true;
+
+
 
 R = size(croppedImage, 1);
 P = size(croppedImage, 2);
 centroids = zeros(R, 1);
+isValid = true;
 
 if strcmp(orientation, 'Vertical')
     
@@ -46,4 +48,5 @@ else
         end
         centroids(p) = c;
     end
+    
 end

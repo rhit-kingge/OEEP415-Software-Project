@@ -28,7 +28,9 @@ else
                  'unit','pix',...
                  'position',[20 20 260 30],...
                  'string','Close');
-    set(errorWindow.pb,'callback',{@pb_call,errorWindow})  % Set the callback for pushbutton.   
+    set(errorWindow.pb,'callback',{@pb_call,errorWindow})  % Set the callback for pushbutton.
+    uiwait(errorWindow.fh);
+    return
 end
 
 %% First estimation of edge location
@@ -36,7 +38,16 @@ end
 
 [centroids, isValid] = findCentroid(croppedImage, interface.EdgeOrientation);
 if isValid == true
-
+    imagesc(croppedImage);
+    colormap('gray');
+    hold on;
+    if strcmp(interface.EdgeOrientation, 'Vertical')
+        xArray = 1:size(croppedImage, 1);
+        plot(centroids, xArray, 'LineWidth', 1.5, 'Color', 'r');
+    else
+        yArray = 1:size(croppedImage, 2);
+        plot(yArray, centroids, 'LineWidth', 1.5, 'Color', 'r');
+    end
 else
     errorWindow.fh = figure('units','pixels',...
         'position',[300 400 340 200],...
@@ -48,24 +59,12 @@ else
         'unit','pix',...
         'position',[20 20 300 150],...
         'fontsize',16,...
-        'string','The edge is too close to the rim of ROI. Please restart the program and select a new ROI.');
+        'string','The edge is too close to the boundary of the ROI. Please restart the program and select a new ROI.');
     errorWindow.pb = uicontrol('style','push',...
         'unit','pix',...
         'position',[20 20 260 30],...
         'string','Close');
     set(errorWindow.pb,'callback',{@pb_call,errorWindow})  % Set the callback for pushbutton.
-end
-
-imagesc(croppedImage);
-colormap('gray');
-hold on;
-
-if strcmp(interface.EdgeOrientation, 'Vertical')
-    xArray = 1:size(croppedImage, 1);
-    plot(centroids, xArray, 'LineWidth', 1.5, 'Color', 'r');
-else
-    yArray = 1:size(croppedImage, 2);
-    plot(yArray, centroids, 'LineWidth', 1.5, 'Color', 'r');
 end
 
 

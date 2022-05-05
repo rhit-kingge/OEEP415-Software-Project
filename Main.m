@@ -67,12 +67,17 @@ else
     set(errorWindow.pb,'callback',{@pb_call,errorWindow})  % Set the callback for pushbutton.
 end
 
+%% Determination of the slant gradient
 
-% sz = size(centroids);
-% 
-% gradient = polyfit((1:sz),centroids(1:sz,1),1);
-
-
+sz = size(centroids);
+gradient = polyfit((1:sz),centroids(1:sz,1),1);
+slope = gradient(1);
+angle = atand(abs(slope));
+if strcmp(interface.EdgeOrientation,'Vertical')
+    fprintf('The angle of the edge is %f degrees clockwise from vertical.\n',angle);
+else
+    fprintf('The angle of the edge is %f degrees clockwise from horizontal.\n',angle);
+end
 
 
 

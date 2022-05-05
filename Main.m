@@ -1,16 +1,14 @@
-clc 
-clear variables 
-close all
+clc; clear variables; close all;
 
 %% Read in image, crop ROI, and convert to gray scale
 raw = imread('reference image.jpg');
 interface = UserInterfaceC(raw);
 roi = interface.ROI;
+orientation = interface.EdgeOrientation;
 croppedImage = im2gray(raw(roi(2) + (0:roi(4)), roi(1) + (0:roi(3))));
-imshow(croppedImage);
 
 %% Check if selected ROI contains an edge
-if checkIfEdge(croppedImage, interface.EdgeOrientation)
+if checkIfEdge(croppedImage, orientation)
     disp('The selected region of interest does contain an edge')
 else
     errorWindow.fh = figure('units','pixels',...
@@ -34,14 +32,12 @@ else
 end
 
 %% First estimation of edge location
-
-
-[centroids, isValid] = findCentroid(croppedImage, interface.EdgeOrientation);
+[centroids, isValid] = findCentroid(croppedImage, orientation);
 if isValid == true
     imagesc(croppedImage);
     colormap('gray');
     hold on;
-    if strcmp(interface.EdgeOrientation, 'Vertical')
+    if strcmp(orientation, 'Vertical')
         xArray = 1:size(croppedImage, 1);
         plot(centroids, xArray, 'LineWidth', 1.5, 'Color', 'r');
     else
@@ -74,14 +70,7 @@ disp("waiting is working")
 
 sz = size(centroids);
 gradient = polyfit((1:sz),centroids(1:sz,1),1);
-
-
-
-
-
-
-
-
+disp(gradient);
 
 
 %% Functions (must be put at the end)

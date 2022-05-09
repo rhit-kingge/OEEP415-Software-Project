@@ -68,10 +68,12 @@ end
 
 %% Determination of the slant gradient
 
-sz = size(centroids);
+[sz,a] = size(centroids);
 gradient = polyfit((1:sz),centroids(1:sz,1),1);
 slope = gradient(1);
 angle = atand(abs(slope));
+m = sz/2;
+shift = ((m-(1:sz))*slope);
 if strcmp(interface.EdgeOrientation,'Vertical')
     fprintf('The angle of the edge is %f degrees clockwise from vertical.\n',angle);
 else

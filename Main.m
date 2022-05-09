@@ -80,7 +80,14 @@ else
     fprintf('The angle of the edge is %f degrees clockwise from horizontal.\n',angle);
 end
 
-
+newCentroids = secondFindCentroid(croppedImage, shift, orientation);
+if strcmp(orientation, 'Vertical')
+    xArray = 1:size(croppedImage, 1);
+    plot(newCentroids, xArray, 'LineWidth', 1.5, 'Color', 'b');
+else
+    yArray = 1:size(croppedImage, 2);
+    plot(yArray, newCentroids, 'LineWidth', 1.5, 'Color', 'b');
+end
 
 
 

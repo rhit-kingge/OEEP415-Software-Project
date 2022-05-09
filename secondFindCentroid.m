@@ -1,28 +1,30 @@
-function [updatedCentroids] = secondFindCentroid(croppedImage, oriCentroids)
-R = size(croppedImage, 1);
-P = size(croppedImage, 2);
-updatedCentroids = oriCentroids;
+function [updatedCentroids] = secondFindCentroid(croppedImage, shift, orientation)
 
-dC = 1:R-1;
-for r = 1:R-1
-    dC(r) = 1/(oriCentroids(r+1) - oriCentroids(r));
+
+if strcmp(orientation, 'Horizontal')
+    croppedImage = croppedImage';
 end
-m = mean(dC);
 
-for r = 1:R
-    values = double(croppedImage(r,:));
-    S = (R/2-r)/m;
+
+totalRows = size(croppedImage, 1);
+totalColumns = size(croppedImage, 2);
+updatedCentroids = zeros(totalRows, 1);
+for row = 1:totalRows
+    values = double(croppedImage(row,:));
     hammingVector = values;
-    for i = 1:P
-        hammingVector(i) = 0.54 +0.46 * cos(2*pi*(i+S-double(P)/2)/P);
+    for i = 1:totalColumns
+        hammingVector(i) = 0.54 +0.46 * cos(2*pi*(i + shift(i) -double(totalColumns)/2)/(totalColumns));
     end
-    values = hammingVector.*values;
     numerator = double(0);
     denominator = double(0);
-    for p = 1:P-1
-        numerator = numerator + p*double(values(1, p+1) - values(1, p));
-        denominator = denominator + double(values(1, p+1) - values(1, p));
+    for column = 1:totalColumns-1
+        numerator = numerator + column*double(values(1, column+1) - values(1, column))*hammingVector(column);
+        denominator = denominator + double(values(1, column+1) - values(1, column))*hammingVector(column);
     end
-    updatedCentroids(r) = numerator/denominator;
+
+
+    c = numerator/denominator;
+    
+    updatedCentroids(row) = c;
 end
 end

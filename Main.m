@@ -74,7 +74,7 @@ slope = gradient(1);
 angle = atand(abs(slope));
 m = sz/2;
 shift = ((m-(1:sz))*slope);
-if strcmp(interface.EdgeOrientation,'Vertical')
+if strcmp(orientation,'Vertical')
     fprintf('The angle of the edge is %f degrees clockwise from vertical.\n',angle);
 else
     fprintf('The angle of the edge is %f degrees clockwise from horizontal.\n',angle);
@@ -90,34 +90,15 @@ else
 end
 
 
-%ESF Calculation: For now, I am hard-coding it in as a vertical edge, but
-%only because I plan to go over everything later and add a check for edge
-%orientation at the beginning of the code that way it isn't checking
-%repetitively. -Aerin
-R = size(croppedImage, 1); P = size(croppedImage, 2); J = 4*P;
-ESF = zeros(J,1); 
-for j=1:J
-    numerator = 0;
-    denominator = 0;
-    for r = 1:R
-        for p = 1:P
-            if abs(p + shift(r) - j/4) < 0.125
-                alpha = 1;
-            else
-                alpha = 0;
-            end
-            numerator = numerator + croppedImage(r, p)*alpha;
-            denominator = denominator + alpha;
-        end
-    end
-    ESF(j,1) = numerator/denominator;
-end
+%% ESF Calculation: 
 
+ESF = calculateESF(croppedImage, shift, orientation);
 
+%% LSF
 
+LSF = calculateLSF(croppedImage, ESF, orientation);
 
-
-%% Functions (must be put at the end)
+%% Function for button on error window (must be put at the end)
 function [] = pb_call(varargin)
         % Callback for the pushbutton.
         errorWindow = varargin{3};  

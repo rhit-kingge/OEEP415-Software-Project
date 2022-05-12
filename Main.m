@@ -94,9 +94,15 @@ end
 
 ESF = calculateESF(croppedImage, shift, orientation);
 
+figure;
+plot(ESF);
+
 %% LSF
 
 LSF = calculateLSF(croppedImage, ESF, orientation);
+
+figure;
+plot(LSF);
 
 %% Function for button on error window (must be put at the end)
 function [] = pb_call(varargin)

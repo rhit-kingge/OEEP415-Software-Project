@@ -90,6 +90,32 @@ else
 end
 
 
+%ESF Calculation: For now, I am hard-coding it in as a vertical edge, but
+%only because I plan to go over everything later and add a check for edge
+%orientation at the beginning of the code that way it isn't checking
+%repetitively. -Aerin
+R = size(croppedImage, 1); P = size(croppedImage, 2); J = 4*P;
+ESF = zeros(J,1); 
+for j=1:J
+    numerator = 0;
+    denominator = 0;
+    for r = 1:R
+        for p = 1:P
+            if abs(p + shift(r) - j/4) < 0.125
+                alpha = 1;
+            else
+                alpha = 0;
+            end
+            numerator = numerator + croppedImage(r, p)*alpha;
+            denominator = denominator + alpha;
+        end
+    end
+    ESF(j,1) = numerator/denominator;
+end
+
+
+
+
 
 %% Functions (must be put at the end)
 function [] = pb_call(varargin)

@@ -104,6 +104,13 @@ LSF = calculateLSF(croppedImage, ESF, orientation);
 figure;
 plot(LSF);
 
+%% MTF
+
+MTF = calculateMTF(LSF);
+
+figure;
+plot(MTF);
+
 %% Function for button on error window (must be put at the end)
 function [] = pb_call(varargin)
         % Callback for the pushbutton.

@@ -22,7 +22,7 @@ classdef UserInterfaceC
             btn1X = 275;
             btn2Position = [btn1X btn1Y btnWidth btnHeight];
             btn2 = uibutton(fig, 'push', 'Position', btn2Position, 'ButtonPushedFcn', @(btn2, event) verticalEdge);
-            btn2.Text = 'Verical Edge';
+            btn2.Text = 'Vertical Edge';
 
             uiwait(fig);
 

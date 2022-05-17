@@ -1,11 +1,11 @@
-function LSF = calculateLSF(croppedImage, ESF, orientation)
+function LSF = calculateLSF(croppedImage, ESF, orientation, shift)
 
 if strcmp(orientation, 'Horizontal')
     croppedImage = croppedImage';
 end
 
-R = size(croppedImage, 1); P = size(croppedImage, 2); J = 4*P;
-
+P = size(croppedImage, 2); J = 4*P;
+%hammingVector(i) = 0.54 +0.46 * cos(2*pi*(i + shift(row) -double(totalColumns)/2)/(totalColumns));
 j = 1:(4*P-2);
 W = 0.54 + 0.46 * cos(2*pi.*(j-(2*P-1))/(4*P-2));
 LSF = zeros(J-2,1);

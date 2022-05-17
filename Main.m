@@ -102,7 +102,7 @@ title('ESF')
 
 %% LSF
 
-LSF = calculateLSF(croppedImage, ESF, orientation);
+LSF = calculateLSF(croppedImage, ESF, orientation, shift);
 
 figure;
 plot(LSF);

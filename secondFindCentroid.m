@@ -13,7 +13,7 @@ for row = 1:totalRows
     values = double(croppedImage(row,:));
     hammingVector = values;
     for i = 1:totalColumns
-        hammingVector(i) = 0.54 +0.46 * cos(2*pi*(i + shift(i) -double(totalColumns)/2)/(totalColumns));
+        hammingVector(i) = 0.54 +0.46 * cos(2*pi*(i + shift(row) -double(totalColumns)/2)/(totalColumns));
     end
     numerator = double(0);
     denominator = double(0);

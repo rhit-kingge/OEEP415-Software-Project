@@ -88,6 +88,8 @@ else
     yArray = 1:size(croppedImage, 2);
     plot(yArray, newCentroids, 'LineWidth', 1.5, 'Color', 'b');
 end
+title('Selected ROI and 2 Edge Estimations')
+legend({'Fisrt Estimation','Final Estiamtion'},'Location','southwest')
 
 
 %% ESF Calculation: 
@@ -96,6 +98,7 @@ ESF = calculateESF(croppedImage, shift, orientation);
 
 figure;
 plot(ESF);
+title('LSF')
 
 %% LSF
 
@@ -103,13 +106,18 @@ LSF = calculateLSF(croppedImage, ESF, orientation);
 
 figure;
 plot(LSF);
+title('LSF')
 
 %% MTF
 
 MTF = calculateMTF(LSF);
+xVec = findResolution(MTF, croppedImage, orientation);
 
 figure;
-plot(MTF);
+plot(xVec, MTF);
+title('MTF')
+xlabel('Resolution (lp/mm)')
+ylabel('MTF Value')
 
 %throws error window if visibility is less than 20 %
 

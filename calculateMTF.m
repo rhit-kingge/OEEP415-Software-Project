@@ -1,20 +1,21 @@
 function MTF = calculateMTF(LSF)
 
-[N,M]=size(LSF);
+N = size(LSF, 1);
+if rem(N, 2) ~= 0 
+    max = N+1;
+else
+    max = N;
+end
 
-for k=1:(N/2+1)
+denom = sum(LSF);
+
+for k=1:(max/2)
     val=(2*pi*(k-1)/N)/(sin(2*pi*(k-1)/N));
-    d=[val,10];
-    D(k)=min(d);
+    D=min(val,10);
+    num = double(0);
     for j=1:N
-        if j==1
-            num(j)=LSF(j)*exp(-i*2*pi*(k-1)*j/N);
-            denom(j)=LSF(j);
-        else
-            num(j)=LSF(j)*exp(-i*2*pi*(k-1)*j/N)+num(j-1);
-            denom(j)=LSF(j)+denom(j-1);
-        end
+        num=LSF(j)*exp(-1i*2*pi*(k-1)*j/N)+num;
     end
-    MTF(k)=D(k)*abs(num(j)/denom(j));
+    MTF(k)=D*abs(num/denom);
 end
 MTF(1)=1;

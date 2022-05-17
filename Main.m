@@ -118,7 +118,18 @@ plot(xVec, MTF);
 title('MTF');
 xlabel('Resolution (lp/mm)');
 ylabel('MTF Value');
-disp("The resolution is:");
+hold on
+
+% Find resolution at 20%
+threshold = 0.2 + zeros(1,size(MTF, 2));
+plot(threshold);
+disp("The resolution in lp/mm is: (the first value down here)");
+
+% This is a function written by Douglas M. Schwarz.
+% License file is included.
+[X0,Y0] = intersections(xVec,MTF,xVec,threshold);
+disp(X0)
+hold off
 
 %throws error window if visibility is less than 20 %
 
@@ -144,7 +155,6 @@ if v < 0.2
     set(MTFerrorWindow.pb,'callback',{@pb_call,MTFerrorWindow})  % Set the callback for pushbutton.
     uiwait(MTFerrorWindow.fh);
 end
-
 
 %% Function for button on error window (must be put at the end)
 function [] = pb_call(varargin)

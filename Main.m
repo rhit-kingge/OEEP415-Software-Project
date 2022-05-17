@@ -122,11 +122,11 @@ hold on
 
 % Find resolution at 20%
 threshold = 0.2 + zeros(1,size(MTF, 2));
-plot(threshold);
-disp("The resolution in lp/mm is: (the first value down here)");
+%plot(threshold);
+disp("The resolution in lp/mm is: (the first value among the following)");
 
 % This is a function written by Douglas M. Schwarz.
-% License file is included.
+% License file is included in folder.
 [X0,Y0] = intersections(xVec,MTF,xVec,threshold);
 disp(X0)
 hold off

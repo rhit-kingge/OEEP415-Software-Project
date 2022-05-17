@@ -98,7 +98,7 @@ ESF = calculateESF(croppedImage, shift, orientation);
 
 figure;
 plot(ESF);
-title('LSF')
+title('ESF')
 
 %% LSF
 
@@ -115,9 +115,10 @@ xVec = findResolution(MTF, croppedImage, orientation);
 
 figure;
 plot(xVec, MTF);
-title('MTF')
-xlabel('Resolution (lp/mm)')
-ylabel('MTF Value')
+title('MTF');
+xlabel('Resolution (lp/mm)');
+ylabel('MTF Value');
+disp("The resolution is:");
 
 %throws error window if visibility is less than 20 %
 

@@ -1,6 +1,6 @@
 function [x] = findResolution(MTF, croppedImage, orientation)
 
-if orientation == "horizontal"
+if strcmp(orientation, 'Horizontal')
     croppedImage = croppedImage';
 end
 % MTF indices / total pixel number = [cycles(lp)/pixel]

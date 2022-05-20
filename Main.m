@@ -89,7 +89,7 @@ else
     plot(yArray, newCentroids, 'LineWidth', 1.5, 'Color', 'b');
 end
 title('Selected ROI and 2 Edge Estimations')
-legend({'Fisrt Estimation','Final Estiamtion'},'Location','southwest')
+legend({'First Estimation','Final Estimation'},'Location','southwest')
 
 
 %% ESF Calculation: 
